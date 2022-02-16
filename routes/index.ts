@@ -13,6 +13,7 @@ const counterPreflight = new client.Counter({
 
 /* GET home page. */
 router.get("/", async (req: any, res: any, next: any) => {
+  console.log('okay')
   const wallet = await faucet.getWallet();
   const chainId = await faucet.getChainId();
   const distributionAmount = faucet.getDistributionAmount();
@@ -30,7 +31,7 @@ router.get("/", async (req: any, res: any, next: any) => {
   //       transaction.createdAt.getTime() + faucet.getWaitPeriod()
   //     );
   // }
-
+  console.log('address', address)
   counterPreflight.inc();
   res.status(200).send(
     JSON.stringify({

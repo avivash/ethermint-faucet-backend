@@ -25,8 +25,8 @@ function invalidAddress(res:any) {
 router.post(
   "/",
   // ensureAuthenticated,
-  blockedAddresses,
-  rateLimit,
+  // blockedAddresses,
+  // rateLimit,
   async (req: any, res: any, next: any) => {
     let { address } = req.body;
     try {
