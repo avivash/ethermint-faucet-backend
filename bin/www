@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+require("dotenv").config();
 require("ts-node").register();
 let { init } = require("../app");
 let http = require("http");

@@ -5,10 +5,10 @@ import parse from "parse-duration";
 
 const NETWORK_RPC_NODE = process.env.NETWORK_RPC_NODE;
 const FAUCET_MNEMONIC = process.env.FAUCET_MNEMONIC;
-const FAUCET_WAIT_PERIOD = process.env.FAUCET_WAIT_PERIOD || "24h";
+const FAUCET_WAIT_PERIOD = process.env.FAUCET_WAIT_PERIOD || "1h";
 const FAUCET_DISTRIBUTION_AMOUNT =
   process.env.FAUCET_DISTRIBUTION_AMOUNT || 1000000000;
-const FAUCET_DENOM = process.env.FAUCET_DENOM || "uakt";
+const FAUCET_DENOM = process.env.FAUCET_DENOM || "agnt";
 const FAUCET_FEES = process.env.FAUCET_FEES || 5000;
 const FAUCET_GAS = process.env.FAUCET_GAS || 180000;
 const FAUCET_MEMO = process.env.FAUCET_MEMO;
@@ -42,7 +42,7 @@ export const getChainId = async () => {
   return await client.getChainId();
 };
 
-export const sendTokens = async (recipient: any, amount: any) => {
+export const sendTokens = async (recipientAddress: any, amount: any) => {
   const wallet = await getWallet();
   console.log('sender ' + wallet)
   console.log(JSON.stringify(wallet))
@@ -58,7 +58,7 @@ export const sendTokens = async (recipient: any, amount: any) => {
     typeUrl: "/cosmos.bank.v1beta1.MsgSend",
     value: {
       fromAddress: account.address,
-      toAddress: recipient,
+      toAddress: recipientAddress,
       amount: parseCoins(`${amount}${FAUCET_DENOM}`),
     },
   };

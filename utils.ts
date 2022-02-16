@@ -23,10 +23,11 @@ export const ensurePermission = jwtAuthz(["manage:faucet"], {
 });
 
 export async function ensureAuthenticated(req: any, res: any, next: any) {
-  if (req.user) return next();
+  return next()
+  // if (req.user) return next();
 
-  counterForbidden.inc();
-  res.status(403).send(JSON.stringify({ error: "Forbidden" }));
+  // counterForbidden.inc();
+  // res.status(403).send(JSON.stringify({ error: "Forbidden" }));
 }
 
 export async function rateLimit(req: any, res: any, next: any) {

@@ -2,9 +2,9 @@ import express from "express";
 const router = express.Router();
 
 import * as db from "../database";
-import { ensureAuthenticated, ensurePermission } from "../utils";
+// import { ensureAuthenticated, ensurePermission } from "../utils";
 
-router.get("/", ensureAuthenticated, ensurePermission, (req, res, next) => {
+router.get("/", (req, res, next) => {
   db.BlockedAddress.findAll({
     order: [["createdAt", "DESC"]],
     limit: 500,
@@ -19,9 +19,9 @@ router.get("/", ensureAuthenticated, ensurePermission, (req, res, next) => {
 
 router.post(
   "/",
-  ensureAuthenticated,
-  ensurePermission,
-  async (req, res, next) => {
+  // ensureAuthenticated,
+  // ensurePermission,
+  async (req, res) => {
     const { address } = req.body;
     try {
       let blocked = await db.BlockedAddress.create({ address: address.trim() });
@@ -34,9 +34,9 @@ router.post(
 
 router.delete(
   "/:id",
-  ensureAuthenticated,
-  ensurePermission,
-  async (req, res, next) => {
+  // ensureAuthenticated,
+  // ensurePermission,
+  async (req, res) => {
     const { id } = req.params;
     try {
       await db.BlockedAddress.destroy({ where: { id } });

@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import { latestTransactionSince } from "../database";
+// import { latestTransactionSince } from "../database";
 import * as faucet from "../faucet";
 
 import client from "prom-client";
@@ -20,16 +20,16 @@ router.get("/", async (req: any, res: any, next: any) => {
   const [{ address }] = await wallet.getAccounts();
   var unlockDate;
 
-  if (req.user && req.user.id) {
-    let cooldownDate = new Date(
-      (new Date() as any) - (faucet.getWaitPeriod() as any)
-    );
-    let transaction: any = await latestTransactionSince(req.user, cooldownDate);
-    if (transaction)
-      unlockDate = new Date(
-        transaction.createdAt.getTime() + faucet.getWaitPeriod()
-      );
-  }
+  // if (req.user && req.user.id) {
+  //   let cooldownDate = new Date(
+  //     (new Date() as any) - (faucet.getWaitPeriod() as any)
+  //   );
+  //   let transaction: any = await latestTransactionSince(req.user, cooldownDate);
+  //   if (transaction)
+  //     unlockDate = new Date(
+  //       transaction.createdAt.getTime() + faucet.getWaitPeriod()
+  //     );
+  // }
 
   counterPreflight.inc();
   res.status(200).send(
