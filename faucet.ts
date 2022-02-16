@@ -39,6 +39,7 @@ export const getChainId = async () => {
     NETWORK_RPC_NODE as any,
     wallet
   );
+  console.log('client', client);
   return await client.getChainId();
 };
 
