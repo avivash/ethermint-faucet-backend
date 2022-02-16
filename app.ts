@@ -23,7 +23,7 @@ async function init() {
   });
 
   app.register(require("fastify-cors"), {
-    origin: false,
+    origin: "*",
   });
 
   const DOMAIN = process.env.AUTH0_DOMAIN;
@@ -79,8 +79,8 @@ async function init() {
   await app.register(fastifyExpress);
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(checkJwt);
-  app.use(loadUser);
+  // app.use(checkJwt);
+  // app.use(loadUser);
 
   app.use("/", indexRouter);
   app.use("/faucet", faucetRouter);
