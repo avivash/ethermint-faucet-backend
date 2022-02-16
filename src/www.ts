@@ -2,8 +2,8 @@
 
 require("dotenv").config();
 require("ts-node").register();
-let { init } = require("../app");
-let http = require("http");
+let { init } = require("../src/app");
+require("http");
 
 (async () => {
   const app = await init();

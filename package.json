@@ -3,30 +3,22 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "start": "node ./src/index.ts",
+    "dev": "nodemon ./src/index.ts"
   },
   "dependencies": {
     "@cosmjs/proto-signing": "^0.26.0",
     "@cosmjs/stargate": "^0.26.0",
     "@hanchon/ethermint-address-converter": "^1.0.0",
     "@types/cors": "^2.8.12",
-    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",
-    "express-jwt": "^6.0.0",
-    "express-jwt-authz": "^2.4.1",
     "fastify": "^3.20.2",
     "fastify-basic-auth": "^2.1.0",
     "fastify-cors": "^6.0.2",
     "fastify-express": "^0.3.3",
     "fastify-metrics": "^7.2.3",
-    "got": "^11.8.2",
-    "jwks-rsa": "^2.0.4",
     "nodemon": "^2.0.12",
-    "parse-duration": "^1.0.0",
-    "pg": "^8.7.1",
-    "sequelize": "^6.6.5",
     "ts-node": "^10.2.1",
     "tsc": "^2.0.3",
     "typescript": "^4.3.5"
