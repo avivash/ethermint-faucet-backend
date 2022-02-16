@@ -1,7 +1,6 @@
 import { DirectSecp256k1HdWallet } from "@cosmjs/proto-signing";
 import { SigningStargateClient, coins, parseCoins } from "@cosmjs/stargate";
 import { stringToPath } from "@cosmjs/crypto";
-import parse from "parse-duration";
 
 const NETWORK_RPC_NODE = process.env.NETWORK_RPC_NODE;
 const FAUCET_MNEMONIC = process.env.FAUCET_MNEMONIC;
@@ -26,7 +25,7 @@ export const getDenom = () => {
 };
 
 export const getWaitPeriod = () => {
-  return parse(FAUCET_WAIT_PERIOD);
+  return FAUCET_WAIT_PERIOD;
 };
 
 export const getDistributionAmount = () => {
