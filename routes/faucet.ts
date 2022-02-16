@@ -2,7 +2,6 @@ import express from "express";
 const router = express.Router();
 
 import * as faucet from "../faucet";
-import { blockedAddresses, rateLimit } from "../utils";
 import { ethToEthermint, ethermintToEth } from "@hanchon/ethermint-address-converter";
 
 import client from "prom-client";
@@ -24,9 +23,6 @@ function invalidAddress(res:any) {
 
 router.post(
   "/",
-  // ensureAuthenticated,
-  // blockedAddresses,
-  // rateLimit,
   async (req: any, res: any, next: any) => {
     let { address } = req.body;
     try {
@@ -38,7 +34,6 @@ router.post(
       } else {
         // Ethermint address
         if (!address.includes("ethm")) return invalidAddress(res);
-        if (ethToEthermint(ethermintToEth(address)) !== address) return invalidAddress(res);
       }
     } catch(error) {
       return invalidAddress(res)
@@ -46,6 +41,7 @@ router.post(
 
     try {
       const result = await faucet.sendTokens(address, null);
+      console.log('RESULT', result)
       counterDrip.inc();
       res
         .status(201)
