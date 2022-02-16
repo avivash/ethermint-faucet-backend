@@ -13,15 +13,10 @@ const counterPreflight = new client.Counter({
 
 /* GET home page. */
 router.get("/", async (req: any, res: any, next: any) => {
-  console.log('okay');
   const wallet = await faucet.getWallet();
-  console.log('wallet', wallet);
   const chainId = await faucet.getChainId();
-  console.log('chainId', chainId);
   const distributionAmount = faucet.getDistributionAmount();
-  console.log('distributionAmount', distributionAmount);
   const distrbutionDenom = faucet.getDenom();
-  console.log('distrbutionDenom', distrbutionDenom);
   const [{ address }] = await wallet.getAccounts();
   // var unlockDate;
 
@@ -35,8 +30,8 @@ router.get("/", async (req: any, res: any, next: any) => {
   //       transaction.createdAt.getTime() + faucet.getWaitPeriod()
   //     );
   // }
-  console.log('address', address);
-  // counterPreflight.inc();
+
+  counterPreflight.inc();
   res.status(200).send(
     JSON.stringify({
       faucetAddress: address,

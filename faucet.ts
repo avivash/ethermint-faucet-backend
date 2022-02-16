@@ -35,12 +35,10 @@ export const getDistributionAmount = () => {
 
 export const getChainId = async () => {
   const wallet = await getWallet();
-  console.log('wallet 2nd', wallet);
   const client = await SigningStargateClient.connectWithSigner(
     NETWORK_RPC_NODE as any,
     wallet
   );
-  console.log('client', client);
   return await client.getChainId();
 };
 
